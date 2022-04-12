@@ -1,29 +1,29 @@
 import React from 'react'
-import {useState, useEffect} from 'react'
+
+import { useState, useEffect } from 'react'
 import {Form, Button, FloatingLabel, Container} from 'react-bootstrap'
 import {BsFillCheckCircleFill} from 'react-icons/bs'
 import validator from 'validator'
-import useAuthenticate from '../hooks/useAuthenticate'
 import Swal from 'sweetalert2'
-import {Link, useNavigate} from 'react-router-dom'
+import useAuthenticate from '../hooks/useAuthenticate'
+import { useNavigate } from 'react-router'
 
-function Register() {
+function RegisterSeller() {
 
-	const [firstName, setFirstName] = useState('')
-	const [lastName, setLastName] = useState('')
+	const [storeName, setStoreName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [confirmPass, setConfirmPass] = useState('')
 	const [disableButton, setDisableButton] = useState(true)
 
-	const [validFName, setValidFName] = useState(false)
-	const [validLName, setValidLName] = useState(false)
+
+	const [validStoreName, setValidStoreName] = useState(false)
 	const [validEmail, setValidEmail] = useState(false)
 	const [validPass, setValidPass] = useState(false)
 	const [validConfirmPass, setValidConfirmPass] = useState(false)
+
+	const {registerSeller} = useAuthenticate('localhost:4000')
 	const nav = useNavigate()
-	
-	const {register} = useAuthenticate('localhost:4000')
 
 	const validateForm = () => {
 		if(password.length >= 8) {
@@ -37,29 +37,22 @@ function Register() {
 			setValidPass(false)
 		}
 
-		if(firstName.length > 1) {
-			setValidFName(true)
+		if(storeName.length > 1) {
+			setValidStoreName(true)
 		} else {
-			setValidFName(false)
+			setValidStoreName(false)
 		}
 
-		if(lastName.length > 5) {
-			setValidLName(true)
-		} else {
-			setValidLName(false)
-		}
-		
 		if(validator.isEmail(email)) {
 			setValidEmail(true)
 		} else {
 			setValidEmail(false)
 		}
-
 	}
 
-	const handleSignup = async () => {
-		const result = await register({firstName, lastName, email, password})
-		
+	const handleSignup = async () =>{
+		const result = await registerSeller({storeName, email, password})
+
 		if(result === "ERR") {
 			Swal.fire({
 				icon : 'error',
@@ -70,70 +63,65 @@ function Register() {
 		} else if(result === true) {
 			Swal.fire({
 				title : 'Success!',
-				text : 'Welcome to Amazonia!',
+				text : 'Welcome to Amazonia, merchant!',
 				confirmButtonText : 'Confirm'
 			}).then(result => {
-				if(result.isConfirmed || result.isDenied || result.isDismissed) {
+				if(result.isConfirmed || result.isDismissed) {
 					nav('/login')
 				}
 			})
 		} else if(result === false) {
 			Swal.fire({
 				icon : 'error',
-				title : 'User Exists',
-				text : 'Please enter a new email!'
+				title : 'Merchant Exists',
+				text : 'Please enter a new email or Store name!'
 			})
 		}
+
 	}
 
 	useEffect(() => {
 		validateForm()
-	}, [password, confirmPass, email, firstName, lastName])
+	}, [password, confirmPass, email, storeName])
 
 	useEffect(() => {
-		if(validFName && validLName && validEmail && validPass && validConfirmPass) {
+		if(validStoreName && validEmail && validPass && validConfirmPass) {
 			setDisableButton(false)
 		} else {
 			setDisableButton(true)
 		}
-	}, [validFName, validLName, validEmail, validPass, validConfirmPass])
+	}, [validStoreName, validEmail, validPass, validConfirmPass])
+
 
 	return (
 		<>
 			<Container className='d-flex min-vh-100 justify-content-center align-items-center'>
-				<Form className='d-flex flex-column w-50'>
-				
-					<Form.Group className='mb-2 d-flex align-items-center'>	
-						<FloatingLabel controlId='floatingFName' label='First Name' className='w-100 me-3'>
-							<Form.Control type='text' placeholder='name' onChange={(e) => setFirstName(e.target.value) } />
-						</FloatingLabel>
-						{validFName === true ?  <BsFillCheckCircleFill className='text-success' size={32} opacity={1}/> : <BsFillCheckCircleFill size={32} opacity={0}/>}
-					</Form.Group>
+				<Form className='w-50 d-flex flex-column'>
 
 					<Form.Group className='mb-2 d-flex align-items-center'>
-						<FloatingLabel controlId='floatingLName' label='Last Name' className='w-100 me-3'>
-							<Form.Control type='text' placeholder='name' onChange={e => setLastName(e.target.value)} />
+						<FloatingLabel controlId='floatingName' label='Store Name' className='w-100 me-3'>
+							<Form.Control onChange={e => setStoreName(e.target.value)} type='text' placeholder='store name' />
 						</FloatingLabel>
-						{validLName === true ?  <BsFillCheckCircleFill className='text-success' size={32} opacity={1}/> : <BsFillCheckCircleFill size={32} opacity={0}/>}
+						{validStoreName === true ?  <BsFillCheckCircleFill className='text-success' size={32} opacity={1}/> : <BsFillCheckCircleFill size={32} opacity={0}/>}
 					</Form.Group>
 
 					<Form.Group className='mb-2 d-flex align-items-center'>
 						<FloatingLabel controlId='floatingEmail' label='Email' className='w-100 me-3'>
-							<Form.Control type='email' placeholder='email' onChange={e => setEmail(e.target.value)}/>
+							<Form.Control onChange={e => setEmail(e.target.value)} type='email' placeholder='email' />
 						</FloatingLabel>
 						{validEmail === true ?  <BsFillCheckCircleFill className='text-success' size={32} opacity={1}/> : <BsFillCheckCircleFill size={32} opacity={0}/>}
 					</Form.Group>
 
 					<Form.Group className='mb-2 d-flex align-items-center'>
 						<FloatingLabel controlId='floatingPassword' label='Password' className='w-100 me-3'>
-							<Form.Control type='password' placeholder='password' onChange={e => setPassword(e.target.value)}/>
+							<Form.Control onChange={e => setPassword(e.target.value)} type='password' placeholder='password' />
 						</FloatingLabel>
 						{validPass === true ?  <BsFillCheckCircleFill className='text-success' size={32} opacity={1}/> : <BsFillCheckCircleFill size={32} opacity={0}/>}
 					</Form.Group>
 
-					<Form.Group className='mb-5 d-flex align-items-center'>
+					<Form.Group className='mb-4 d-flex align-items-center'>
 						<FloatingLabel controlId='floatingCPassword' label='Confirm Password' className='w-100 me-3'>
-							<Form.Control type='password' placeholder='password' onChange={e => setConfirmPass(e.target.value)} />
+							<Form.Control onChange={e => setConfirmPass(e.target.value)} type='password' placeholder='password' />
 						</FloatingLabel>
 						{validConfirmPass === true ?  <BsFillCheckCircleFill className='text-success' size={32} opacity={1}/> : <BsFillCheckCircleFill size={32} opacity={0}/>}
 					</Form.Group>
@@ -141,14 +129,11 @@ function Register() {
 					<Form.Group className='d-flex flex-column align-items-center'>
 						{disableButton === true ? <Button disabled={true}>Sign up!</Button> : <Button onClick={handleSignup}>Sign up!</Button> }
 					</Form.Group>
-
-					<Form.Group className='d-flex justify-content-center'>
-							<Form.Text>Are you a merchant? Sign up <Link to='/registerSeller'>here</Link> instead.</Form.Text>
-						</Form.Group>
 				</Form>
+
 			</Container>
 		</>
 	)
 }
 
-export default Register
+export default RegisterSeller
