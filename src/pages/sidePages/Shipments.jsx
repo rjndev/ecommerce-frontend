@@ -4,10 +4,13 @@ import {Container, Form} from 'react-bootstrap'
 import ShipmentCard from '../../components/ShipmentCard'
 import useOrderDetails from '../../hooks/useOrderDetails'
 import { useState, useEffect } from 'react'
+import ProductsFromOrderModal from '../../components/modals/ProductsFromOrderModal'
 
 function Shipments() {
-	const {getProductsFromOrder} = useOrderDetails('localhost:4000')
+	const {getProductsFromOrder} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
 	const [allOrders, setAllOrders] = useState([])
+	const [showModal, setShowModal] = useState(false)
+	const [currOrder, setCurrOrder] = useState({})
 
 
 	const getOrders = async () => {
@@ -29,10 +32,11 @@ function Shipments() {
 		<>
 			{allOrders.map((order, i) => {
 				return (
-					<ShipmentCard key={i} orderData={order} />
+					<ShipmentCard setCurrOrder={setCurrOrder} key={i} setShowModal={setShowModal} orderData={order} />
 				)
 			})}
 			
+			<ProductsFromOrderModal showModal={showModal} setShowModal={setShowModal} orderDetails={currOrder}/>
 		</>
 	)
 }

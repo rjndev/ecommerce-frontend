@@ -5,12 +5,12 @@ import ProductCard from './ProductCard'
 import useProductDetails from '../hooks/useProductDetails'
 
 function Showcase() {
-	const {getRandomProducts} = useProductDetails('localhost:4000')
+	const {getRandomProducts} = useProductDetails('https://whispering-anchorage-97427.herokuapp.com')
 	const [randomProducts, setRandomProducts] = useState([])
 
 	const getProductData = async () => {
 		console.log("GETTING DATA")
-		const result = await getRandomProducts(3)
+		const result = await getRandomProducts(5)
 		setRandomProducts([...result])
 	}
 

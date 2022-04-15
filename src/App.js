@@ -24,8 +24,8 @@ function App() {
 	const [userLoggedIn, setUserLoggedIn] = useState(false)
 	const [isSeller, setIsSeller] = useState(false)
 	const [loaded, setIsLoaded] = useState(false)
-	const {getUserDetails} = useUserDetails('localhost:4000')
-	const {getSellerDetails} = useSellerDetails('localhost:4000')
+	const {getUserDetails} = useUserDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {getSellerDetails} = useSellerDetails('https://whispering-anchorage-97427.herokuapp.com')
 
 	const verifySeller = async () => {
 		const data = await getSellerDetails(localStorage.getItem('token'))

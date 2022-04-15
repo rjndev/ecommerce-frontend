@@ -12,7 +12,7 @@ function Login() {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const {login, loginSeller} = useAuthenticate('localhost:4000')
+	const {login, loginSeller} = useAuthenticate('https://whispering-anchorage-97427.herokuapp.com')
 	const {setUserLoggedIn, userLoggedIn, setIsSeller} = useUserContext()
 	const nav = useNavigate()
 

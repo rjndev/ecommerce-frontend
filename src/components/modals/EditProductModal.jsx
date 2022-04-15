@@ -11,7 +11,7 @@ function EditProductModal({showModal, setShowModal, productName, editQuantity, i
 	const [quantity, setQuantity] = useState(0)
 	const handleClose = () => setShowModal(false)
 	const handleShow = () => setShow(true)
-	const {editProductQuantity} = useOrderDetails('localhost:4000')
+	const {editProductQuantity} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
 
 	const handleEdit = async () => {
 

@@ -11,8 +11,8 @@ function ProductInfo() {
 	const {id} = useParams()
 	const [productInfo, setProductInfo] = useState({})
 	const [loaded, setLoaded] = useState(false)
-	const {getProductDetails} = useProductDetails('localhost:4000')
-	const {addToCart} = useOrderDetails('localhost:4000')
+	const {getProductDetails} = useProductDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {addToCart} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
 	const [quantity, setQuantity] = useState(0)
 	const nav = useNavigate()
 
@@ -71,7 +71,7 @@ function ProductInfo() {
 
 					<Container className='mt-5 d-flex flex-column justify-content-center'>
 						<h2 className='mb-4'>{productInfo.name}</h2>
-						<h4 className='mb-3'>{productInfo.rating} / 5.0</h4>
+						{/* <h4 className='mb-3'>{productInfo.rating} / 5.0</h4> */}
 						<p>{productInfo.description}</p>
 					</Container>
 

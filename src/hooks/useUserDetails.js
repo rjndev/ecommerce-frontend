@@ -9,7 +9,7 @@ const useUserDetails = (apiUrl) => {
 		token = 'Bearer ' + token
 		console.log("TOKEN")
 		console.log(token)
-		const res = await axios.get(`http://${apiUrl}/api/users/details`, {headers : {'Authorization' : token}})
+		const res = await axios.get(`${apiUrl}/api/users/details`, {headers : {'Authorization' : token}})
 		console.log('GET USER DETAILS')
 		console.log(res)
 

@@ -7,7 +7,7 @@ const useSellerDetails = (apiUrl) => {
 	const getSellerDetails = async ( token) => {
 		token = 'Bearer ' + token
 
-		const res = await axios.get(`http://${apiUrl}/api/seller/details`, {headers : {'Authorization' : token}})
+		const res = await axios.get(`${apiUrl}/api/seller/details`, {headers : {'Authorization' : token}})
 
 		console.log("SELLER DETAIL")
 		console.log(res)
@@ -16,7 +16,7 @@ const useSellerDetails = (apiUrl) => {
 
 	const getSellerProducts = async (token) => {
 		token = 'Bearer ' + token
-		const res = await axios(`http://${apiUrl}/api/seller/details`, {headers : {'Authorization' : token}})
+		const res = await axios(`${apiUrl}/api/seller/details`, {headers : {'Authorization' : token}})
 
 		console.log("SELLER PRODUCTS")
 		console.log(res)

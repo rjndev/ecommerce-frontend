@@ -15,7 +15,7 @@ function AddProductModal({currProductForEdit, showModal, setShowModal, isAdd, se
 	const [imagePath, setImagePath] = useState('')
 
 
-	const {getCategories, addProduct, editProduct} = useProductDetails('localhost:4000')
+	const {getCategories, addProduct, editProduct} = useProductDetails('https://whispering-anchorage-97427.herokuapp.com')
 
 	const handleClose = () => setShowModal(false)
 
@@ -45,11 +45,17 @@ function AddProductModal({currProductForEdit, showModal, setShowModal, isAdd, se
 			setCategories([])
 			setImagePath('')
 			setShowModal(false)
+		} else if(result == "EP") {
+			Swal.fire({
+				icon: 'warning',
+				title : 'Oops..',
+				text : 'Product already exists.'
+			})
 		} else {
 			Swal.fire({
 				icon: 'error',
 				title : 'Error!',
-				text : 'Something went wrong, please try again.'
+				text : 'Something went wrong.'
 			})
 		} 
 	}

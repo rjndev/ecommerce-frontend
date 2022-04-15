@@ -23,7 +23,7 @@ function Register() {
 	const [validConfirmPass, setValidConfirmPass] = useState(false)
 	const nav = useNavigate()
 	
-	const {register} = useAuthenticate('localhost:4000')
+	const {register} = useAuthenticate('https://whispering-anchorage-97427.herokuapp.com')
 
 	const validateForm = () => {
 		if(password.length >= 8) {

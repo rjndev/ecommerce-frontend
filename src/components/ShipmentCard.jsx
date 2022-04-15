@@ -5,9 +5,17 @@ import {BiDetail} from 'react-icons/bi'
 import { useState } from 'react'
 
 
-function ShipmentCard({orderData}) {
+function ShipmentCard({orderData, setShowModal, setCurrOrder}) {
 	const [totalItems, setTotalItems] = useState(0)
 	const [totalAmount, setTotalAmount] = useState(0)
+
+	const handleShowModal = () => {
+		console.log("SETTING CURR ORDER")
+		console.log(orderData)
+		setCurrOrder({...orderData})
+		setShowModal(true)
+	}
+
 
 	useEffect(() => {
 		orderData.productsInvolved.forEach(curr => {
@@ -39,7 +47,7 @@ function ShipmentCard({orderData}) {
 				</Container>
 
 				<Container className='py-3 d-flex justify-content-center'>
-					<Button style={{width : '5em'}}><BiDetail style={{fontSize : '1.35rem'}}/></Button>
+					<Button onClick={handleShowModal} style={{width : '5em'}}><BiDetail style={{fontSize : '1.35rem'}}/></Button>
 				</Container>
 
 

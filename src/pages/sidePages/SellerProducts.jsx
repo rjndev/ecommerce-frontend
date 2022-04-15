@@ -10,7 +10,7 @@ function SellerProducts() {
 	const [currProductForEdit, setCurrProductForEdit] = useState({})
 	const [showModal, setShowModal] = useState(false)
 	const [isAdd, setIsAdd] = useState(true)
-	const {getSellerProducts} = useSellerDetails('localhost:4000')
+	const {getSellerProducts} = useSellerDetails('https://whispering-anchorage-97427.herokuapp.com')
 
 
 

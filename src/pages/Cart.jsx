@@ -11,7 +11,7 @@ import {useUserContext} from '../context/UserContext'
 function Cart() {
 	const [orderDetails, setOrderDetails] = useState({})
 	const [loaded, setLoaded] = useState(false)
-	const {getUserOrder, deleteProduct} = useOrderDetails('localhost:4000')
+	const {getUserOrder, deleteProduct, payOutOrder} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
 	const [valueRefresh , setValueRefresh] = useState(true)
 	const nav =  useNavigate()
 
@@ -34,6 +34,41 @@ function Cart() {
 
 	}
 
+	const handlePayOut = async () => {
+		try { 
+
+			if(orderDetails.products == undefined || orderDetails.products.length == 0) {
+				Swal.fire({
+					icon: 'error',
+					title : 'Error!',
+					text : 'You have no current orders.'
+				})
+				return
+			}
+			const result = await payOutOrder(localStorage.getItem('token'), orderDetails._id.toString())
+
+			if(result == "OK") {
+				Swal.fire({
+					icon: 'success',
+					title : 'Success!',
+					text : 'Successfully edited the item.'
+				}).then(res => {
+					if(res.isConfirmed || res.isDismissed) {
+						setValueRefresh(prev => !prev)
+					}
+				})
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title : 'Error!',
+					text : 'Something went wrong, please try again.'
+				})
+			}
+		}catch(err) {
+			console.log(err)
+		}
+	}
+
 	const handleDeleteProduct = async (id) => {
 		Swal.fire({
 			icon : 'question',
@@ -53,6 +88,7 @@ function Cart() {
 						}).then(result2 => {
 							if(result2.isConfirmed || result2.isDismissed) {
 								setValueRefresh(prev => !prev)
+								window.location.reload()
 							}
 						})
 					}
@@ -62,9 +98,13 @@ function Cart() {
 	}
 
 	const getOrder = async () => {
-		console.log("GETTTT ORDER")
+		
 		let result = await getUserOrder(localStorage.getItem('token'))
-		setOrderDetails({...result})
+		console.log("GETTTT ORDER")
+		console.log(result)
+
+		if(result != "ERROR") 
+			setOrderDetails({...result})
 		setLoaded(true)
 	}
 	
@@ -83,7 +123,7 @@ function Cart() {
 		<>
 			{loaded &&
 			
-				<Container className='vh-100 w-100 d-flex justify-content-center align-items-center'>
+				<Container className='vh-100 w-100 d-flex flex-column justify-content-center align-items-center'>
 					<Table striped bordered hover className=''>
 						<thead>
 							<tr>
@@ -125,7 +165,11 @@ function Cart() {
 						</tr>
 						</tbody>
 					</Table>
+					<Container>
+						<Button onClick={handlePayOut}>Checkout</Button>
+					</Container>		
 				</Container>
+				
 			}
 			
 
