@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import ProductsFromOrderModal from '../../components/modals/ProductsFromOrderModal'
 
 function Shipments() {
-	const {getProductsFromOrder} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {getProductsFromOrder} = useOrderDetails('https://amazonia-backend.onrender.com')
 	const [allOrders, setAllOrders] = useState([])
 	const [showModal, setShowModal] = useState(false)
 	const [currOrder, setCurrOrder] = useState({})

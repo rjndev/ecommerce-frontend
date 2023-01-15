@@ -11,7 +11,7 @@ function EditProductModal({showModal, setShowModal, productName, editQuantity, i
 	const [quantity, setQuantity] = useState(0)
 	const handleClose = () => setShowModal(false)
 	const handleShow = () => setShow(true)
-	const {editProductQuantity} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {editProductQuantity} = useOrderDetails('https://amazonia-backend.onrender.com')
 
 	const handleEdit = async () => {
 

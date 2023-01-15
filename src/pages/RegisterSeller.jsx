@@ -22,7 +22,7 @@ function RegisterSeller() {
 	const [validPass, setValidPass] = useState(false)
 	const [validConfirmPass, setValidConfirmPass] = useState(false)
 
-	const {registerSeller} = useAuthenticate('https://whispering-anchorage-97427.herokuapp.com')
+	const {registerSeller} = useAuthenticate('https://amazonia-backend.onrender.com')
 	const nav = useNavigate()
 
 	const validateForm = () => {

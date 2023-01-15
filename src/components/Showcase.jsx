@@ -5,7 +5,7 @@ import ProductCard from './ProductCard'
 import useProductDetails from '../hooks/useProductDetails'
 
 function Showcase() {
-	const {getRandomProducts} = useProductDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {getRandomProducts} = useProductDetails('https://amazonia-backend.onrender.com')
 	const [randomProducts, setRandomProducts] = useState([])
 
 	const getProductData = async () => {

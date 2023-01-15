@@ -12,7 +12,7 @@ function Login() {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const {login, loginSeller} = useAuthenticate('https://whispering-anchorage-97427.herokuapp.com')
+	const {login, loginSeller} = useAuthenticate('https://amazonia-backend.onrender.com')
 	const {setUserLoggedIn, userLoggedIn, setIsSeller} = useUserContext()
 	const nav = useNavigate()
 

@@ -23,7 +23,7 @@ function Register() {
 	const [validConfirmPass, setValidConfirmPass] = useState(false)
 	const nav = useNavigate()
 	
-	const {register} = useAuthenticate('https://whispering-anchorage-97427.herokuapp.com')
+	const {register} = useAuthenticate('https://amazonia-backend.onrender.com')
 
 	const validateForm = () => {
 		if(password.length >= 8) {

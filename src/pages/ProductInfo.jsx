@@ -11,8 +11,8 @@ function ProductInfo() {
 	const {id} = useParams()
 	const [productInfo, setProductInfo] = useState({})
 	const [loaded, setLoaded] = useState(false)
-	const {getProductDetails} = useProductDetails('https://whispering-anchorage-97427.herokuapp.com')
-	const {addToCart} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {getProductDetails} = useProductDetails('https://amazonia-backend.onrender.com')
+	const {addToCart} = useOrderDetails('https://amazonia-backend.onrender.com')
 	const [quantity, setQuantity] = useState(0)
 	const nav = useNavigate()
 

@@ -15,7 +15,7 @@ function AddProductModal({currProductForEdit, showModal, setShowModal, isAdd, se
 	const [imagePath, setImagePath] = useState('')
 
 
-	const {getCategories, addProduct, editProduct} = useProductDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {getCategories, addProduct, editProduct} = useProductDetails('https://amazonia-backend.onrender.com')
 
 	const handleClose = () => setShowModal(false)
 

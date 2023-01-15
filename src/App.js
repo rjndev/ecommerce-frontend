@@ -73,8 +73,6 @@ function App() {
 		} else {
 			setUserLoggedIn(false)
 		}
-
-		
 	})
 
   return (

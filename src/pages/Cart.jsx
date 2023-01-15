@@ -11,7 +11,7 @@ import {useUserContext} from '../context/UserContext'
 function Cart() {
 	const [orderDetails, setOrderDetails] = useState({})
 	const [loaded, setLoaded] = useState(false)
-	const {getUserOrder, deleteProduct, payOutOrder} = useOrderDetails('https://whispering-anchorage-97427.herokuapp.com')
+	const {getUserOrder, deleteProduct, payOutOrder} = useOrderDetails('https://amazonia-backend.onrender.com')
 	const [valueRefresh , setValueRefresh] = useState(true)
 	const nav =  useNavigate()
 

@@ -41,6 +41,7 @@ const useProductDetails = (apiUrl) => {
 		
 	}
 
+
 	const editProduct = async(token, productId, data) => {
 		token = 'Bearer '+ token
 		const res = await axios.put(`${apiUrl}/api/products/details/${productId}/update`, data, {headers: {'Authorization' : token}} ) 
