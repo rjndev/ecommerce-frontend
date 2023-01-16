@@ -17,6 +17,7 @@ import {useEffect, useState} from 'react'
 import {UserProvider} from './context/UserContext'
 import useUserDetails from './hooks/useUserDetails';
 import useSellerDetails from './hooks/useSellerDetails';
+import './App.css'
 
 function App() {
 

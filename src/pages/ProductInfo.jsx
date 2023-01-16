@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 function ProductInfo() {
 	const {id} = useParams()
 	const [productInfo, setProductInfo] = useState({})
-	const [loaded, setLoaded] = useState(false)
+	const [loading, setLoading] = useState(true)
 	const {getProductDetails} = useProductDetails('https://amazonia-backend.onrender.com')
 	const {addToCart} = useOrderDetails('https://amazonia-backend.onrender.com')
 	const [quantity, setQuantity] = useState(0)
@@ -20,7 +20,7 @@ function ProductInfo() {
 		const result = await getProductDetails(id)
 
 		setProductInfo({...result})
-		setLoaded(true)
+		setLoading(false)
 	}
 
 	const handleAddToCart = async () => {
@@ -63,7 +63,14 @@ function ProductInfo() {
 	
 	return (
 		<>
-			{loaded &&
+			{loading ?
+
+				<Container height={100} className='w-100 vh-100 mt-20 pt-20 align-items-center d-flex justify-content-around'>
+		 			<img src="/images/loading.png" className='rotate' height={60} alt="loading" />
+				</Container>
+
+				:
+				
 				<Container fluid className='mt-5 d-flex' >
 					<Container className='mt-5 ms-4'>
 						<img src={productInfo.imagePath} className='p-3' width={450} height={450} alt="pic" />
@@ -96,6 +103,7 @@ function ProductInfo() {
 				</Container>
 			}
 		</>
+		
 	)
 }
 

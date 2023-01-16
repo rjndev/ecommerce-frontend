@@ -10,7 +10,7 @@ import {useUserContext} from '../context/UserContext'
 
 function Cart() {
 	const [orderDetails, setOrderDetails] = useState({})
-	const [loaded, setLoaded] = useState(false)
+	const [loading, setLoading] = useState(true)
 	const {getUserOrder, deleteProduct, payOutOrder} = useOrderDetails('https://amazonia-backend.onrender.com')
 	const [valueRefresh , setValueRefresh] = useState(true)
 	const nav =  useNavigate()
@@ -100,12 +100,12 @@ function Cart() {
 	const getOrder = async () => {
 		
 		let result = await getUserOrder(localStorage.getItem('token'))
+		setLoading(false)
 		console.log("GETTTT ORDER")
 		console.log(result)
 
 		if(result != "ERROR") 
 			setOrderDetails({...result})
-		setLoaded(true)
 	}
 	
 	useEffect(()=> {
@@ -121,8 +121,8 @@ function Cart() {
 	
 	return (
 		<>
-			{loaded &&
-			
+			{loading ?
+				
 				<Container className='vh-100 w-100 d-flex flex-column justify-content-center align-items-center'>
 					<Table striped bordered hover className=''>
 						<thead>
@@ -170,8 +170,11 @@ function Cart() {
 					</Container>		
 				</Container>
 				
+				:
+				(<Container height={100} className='w-100 vh-100 pt-15 align-items-center d-flex justify-content-around'>
+				<img src="images/loading.png" className='rotate' height={60} alt="" />
+				</Container>)
 			}
-			
 
 			<EditProductModal showModal={showModal} setShowModal={setShowModal} productName={currProdName} editQuantity={editQuantity} index={currProdIndex} setValueRefresh = {setValueRefresh} />
 		</>
