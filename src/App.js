@@ -11,13 +11,15 @@ import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Logout from './pages/Logout'
 import RegisterSeller from './pages/RegisterSeller';
-
+import Footer from './pages/Footer';
 
 import {useEffect, useState} from 'react'
 import {UserProvider} from './context/UserContext'
 import useUserDetails from './hooks/useUserDetails';
 import useSellerDetails from './hooks/useSellerDetails';
 import './App.css'
+import SearchResult from './pages/SearchResult';
+
 
 function App() {
 
@@ -77,28 +79,32 @@ function App() {
 	})
 
   return (
-			<>
+			<div style={{height : "100vh"}}>
 				{loaded && 
 					<UserProvider data = {{userData, setUserData, userLoggedIn, setUserLoggedIn, isSeller, setIsSeller}}>
 						<Router>
-							<AppNavBar />
-							<Routes>
-								<Route exact path='/' element={<Home/>}/>
-								<Route exact path='/login' element={<Login/>} />
-								<Route exact path='/signup' element={<Register/>} />
-								<Route exact path='/product/:id' element={<ProductInfo/>} />
-								<Route exact path='/cart' element={<Cart/>} />
-								<Route exact path='/logout' element={<Logout/>} />
-								<Route exact path='/registerSeller' element={<RegisterSeller/>} />
-								
-							</Routes>
+							<div className='d-flex flex-column h-100 w-100'>
+								<AppNavBar />
+								<Routes>
+									<Route exact path='/' element={<Home/>}/>
+									<Route exact path='/login' element={<Login/>} />
+									<Route exact path='/signup' element={<Register/>} />
+									<Route exact path='/product/:id' element={<ProductInfo/>} />
+									<Route exact path='/cart' element={<Cart/>} />
+									<Route exact path='/logout' element={<Logout/>} />
+									<Route exact path='/registerSeller' element={<RegisterSeller/>} />
+									<Route exact path="/search/:searchQuery" element={<SearchResult/>} />
+								</Routes>
+								<Footer />
+							</div>
+							
 						</Router>
 					</UserProvider>	
 				
 				
 				}
 					
-			</>
+			</div>
   );
 }
 

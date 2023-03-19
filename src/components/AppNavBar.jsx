@@ -3,6 +3,7 @@ import {Navbar, Container, Nav, Form, FormControl, Button} from 'react-bootstrap
 import { Link } from 'react-router-dom'
 import { useUserContext } from '../context/UserContext'
 import { useNavigate } from 'react-router'
+import SearchBar from './SearchBar'
 
 function AppNavBar() {
 	const {userLoggedIn, userData, isSeller} = useUserContext()
@@ -19,8 +20,7 @@ function AppNavBar() {
 						<Nav className='me-auto ms-auto w-75 px-5 py-2 align-items-center'>
 							<Container className='d-flex align-items-center'>
 								<Form className='d-flex w-100'>
-									<FormControl type='search' placeholder='Search items...' className='me-2 input-height-sm' aria-label='search' />
-									<Button variant='outline-info'>Search</Button>
+									<SearchBar />
 								</Form>
 							</Container>
 						</Nav>

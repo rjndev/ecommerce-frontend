@@ -9,6 +9,12 @@ const useProductDetails = (apiUrl) => {
 		return res.data.result
 	}
 
+	const getSearchProduct = async(textSearch) => {
+		const res = await axios.get(`${apiUrl}/api/products/search/${textSearch}`)
+
+		return res.data.result;
+	}
+
 	const getProductDetails = async (id) => {
 		const res = await axios.get(`${apiUrl}/api/products/details/${id}`)
 
@@ -56,7 +62,8 @@ const useProductDetails = (apiUrl) => {
 		getProductDetails,
 		getCategories,
 		addProduct,
-		editProduct
+		editProduct,
+		getSearchProduct
 	}
 
 }

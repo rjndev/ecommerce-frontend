@@ -24,18 +24,24 @@ function Showcase() {
 	
 	return (
 		<>
+
 			{isLoading ? 
 			(<Container height={100} className='w-100 h-[32rem] pt-5 d-flex justify-content-around'>
 				<img src="images/loading.png" className='rotate' height={60} alt="" />
 			</Container>) 
 			:
-			<Container fluid className='w-100 d-flex justify-content-around mt-5 mb-5 flex-wrap'>
-				{randomProducts.map(prod => {
-					return (
-						<ProductCard key={prod._id} productDetails={prod}/>
-					)
-				})}
-			</Container>
+			<div className='d-flex flex-column'>
+				<hr className='mt-5' />
+				<h4 className='ms-5'>Random Showcase</h4>
+				<Container fluid className='w-100 d-flex justify-content-around mt-5 mb-5 flex-wrap'>
+					{randomProducts.map(prod => {
+						return (
+							<ProductCard key={prod._id} productDetails={prod}/>
+						)
+					})}
+				</Container>
+			</div>
+			
 			
 			}
 			

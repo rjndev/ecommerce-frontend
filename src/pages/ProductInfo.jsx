@@ -23,6 +23,8 @@ function ProductInfo() {
 		setLoading(false)
 	}
 
+	
+
 	const handleAddToCart = async () => {
 
 		if(localStorage.getItem('token') == null) {
@@ -71,7 +73,7 @@ function ProductInfo() {
 
 				:
 				
-				<Container fluid className='mt-5 d-flex' >
+				<Container fluid className='mt-5 d-flex px-5' >
 					<Container className='mt-5 ms-4'>
 						<img src={productInfo.imagePath} className='p-3' width={450} height={450} alt="pic" />
 					</Container>
