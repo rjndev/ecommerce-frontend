@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom/dist'
 
 function SearchBar() {
   const [clickedItem, setClickedItem] = useState(false)
+  const [focusSearch, setFocusSearch] = useState(false)
   const [searchText, setSearchText] = useState('')
   const [showSearchResult, setShowSearchResult] = useState(false)
   const [searchResults, setSearchResults] = useState([])
@@ -18,8 +19,7 @@ function SearchBar() {
     if(searchText === "") {
       setShowSearchResult(false)
       return
-    }
-     
+    }     
 
     const result = await getSearchProduct(searchText)
 
@@ -32,6 +32,13 @@ function SearchBar() {
       setShowSearchResult(false)
   }
 
+
+  const handleKeyDown = (event) => {
+    if(event.key === "Enter") {
+      nav(`/search/${searchText}`)
+    }
+  }
+
   const handleSearchClick = (id) => {
     console.log(`CLICKED SEARCH ${id}` )
     nav(`/product/${id}`)
@@ -42,28 +49,30 @@ function SearchBar() {
   const handleSearchButtonClick = () => {
     nav(`/search/${searchText}`)
   }
-
-  const handleOnFocusInput = () => {
-    if(searchText !== "")
-      setShowSearchResult(true)
-  }
-
-  const closeSearch = () => {
-    console.log("CLOSE")
-    setShowSearchResult(false)
-  }
-
   
+  const handleContainerOnBlur = () => {
+    if(focusSearch)
+      setSearchResults(true)
+    else
+      setSearchResults(false)
+  }
+
 
 
   useEffect(() => {
     handleSearchText()
   }, [searchText])
 
+  useEffect(() => {
+    if(focusSearch)
+      setShowSearchResult(true)
+    else
+      setShowSearchResult(false)
+  }, [focusSearch])
 
   return (
-    <Container onBlur = {() => setShowSearchResult(false)} className='d-flex w-100'>
-        <FormControl onFocus={() => setShowSearchResult(true)} onChange={(e) => setSearchText(e.target.value)} type='search' placeholder='Search items...' className='me-2 input-height-sm' aria-label='search' />							
+    <Container className='d-flex w-100'>
+        <FormControl onKeyDown={handleKeyDown} onFocus={() => setFocusSearch(true)} onChange={(e) => setSearchText(e.target.value)} type='search' placeholder='Search items...' className='me-2 input-height-sm' aria-label='search' />							
         <Button variant='outline-info' onClick={handleSearchButtonClick}>Search</Button>
 
 
@@ -71,7 +80,7 @@ function SearchBar() {
           showSearchResult && 
 
 
-          <Container onClick={() => setShowSearchResult(true)} className='d-flex flex-column position-absolute top-100 start-35 bg-white rounded overflow-auto' style={{width : "550px", maxHeight: "400px"}}>
+          <Container onBlur={handleContainerOnBlur} onClick={() => setShowSearchResult(true)} className='d-flex flex-column position-absolute top-100 start-35 bg-white rounded overflow-auto' style={{width : "550px", maxHeight: "400px"}}>
             {
               searchResults.map((result, id) => 
                 <Container onClick={() => handleSearchClick(result._id)} key={id} className='d-flex mt-3 mb-3 align-items-center hover-bg' style={{cursor: "pointer"}}>
