@@ -61,7 +61,7 @@ function Login() {
 						<Button variant='success' onClick={handleLogin}>Log in</Button>
 						
 						<Form.Group>
-							<Form.Text>Dont have an account? Sign up <Link to='/register'>here</Link>.</Form.Text>
+							<Form.Text>Dont have an account? Sign up <Link to='/signup'>here</Link>.</Form.Text>
 						</Form.Group>
 					</Form.Group>
 				</Form>

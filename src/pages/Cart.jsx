@@ -100,7 +100,7 @@ function Cart() {
 	const getOrder = async () => {
 		
 		let result = await getUserOrder(localStorage.getItem('token'))
-		setLoading(false)
+		setLoading(true)
 		console.log("GETTTT ORDER")
 		console.log(result)
 

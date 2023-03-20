@@ -83,13 +83,7 @@ function SearchBar() {
     handleSearchText()
   }, [searchText])
 
-  useEffect(() => {
-    if(focusSearch)
-      setShowSearchResult(true)
-    else
-      setShowSearchResult(false)
-  }, [focusSearch])
-
+ 
   return (
     <div ref={componentRef} className='d-flex w-100'>
         <FormControl onKeyDown={handleKeyDown} onFocus={handleSearchText} onChange={(e) => setSearchText(e.target.value)} type='search' placeholder='Search items...' className='me-2 input-height-sm' aria-label='search' />							
