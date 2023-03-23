@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react'
 import {Container} from 'react-bootstrap'
 import ProductCard from './ProductCard'
 import useProductDetails from '../hooks/useProductDetails'
+import backendConnection from '../backendConstant'
 
 function Showcase() {
-	const {getRandomProducts} = useProductDetails('https://amazonia-backend.onrender.com')
+	const {getRandomProducts} = useProductDetails(backendConnection)
 	const [randomProducts, setRandomProducts] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 
@@ -33,7 +34,7 @@ function Showcase() {
 			<div className='d-flex flex-column'>
 				<hr className='mt-5' />
 				<h4 className='ms-5'>Random Showcase</h4>
-				<Container fluid className='w-100 d-flex justify-content-around mt-5 mb-5 flex-wrap'>
+				<Container fluid className='w-100 d-flex align-items-xl-center justify-content-xl-between flex-wrap column-gap-2 mt-5 mb-5 showcase '>
 					{randomProducts.map(prod => {
 						return (
 							<ProductCard key={prod._id} productDetails={prod}/>

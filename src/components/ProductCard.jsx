@@ -9,7 +9,7 @@ function ProductCard({productDetails}) {
 
 	return (
 		<>
-				<Card bg=''  border='' style={{width : '15rem', cursor : 'pointer'}} onClick={()=> nav(`/product/${productDetails._id}`)} >
+				<Card className='showcase-card' bg=''  border='' style={{width : '15rem', cursor : 'pointer'}} onClick={()=> nav(`/product/${productDetails._id}`)} >
 					<Card.Img variant='top' className='p-3' src={productDetails.imagePath} height={200}  />
 					<Card.Body>
 						<Card.Title className=''>{productDetails.name}</Card.Title>

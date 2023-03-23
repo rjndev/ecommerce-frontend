@@ -5,6 +5,7 @@ import { Modal, Container, Button, Form, FloatingLabel} from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import useProductDetails from '../../hooks/useProductDetails'
 import Swal from 'sweetalert2'
+import backendConnection from '../../backendConstant.js'
 
 function AddProductModal({currProductForEdit, showModal, setShowModal, isAdd, setIsAdd, productDetails}) {
 	const [allCategories,setAllCategories] = useState([])
@@ -15,7 +16,7 @@ function AddProductModal({currProductForEdit, showModal, setShowModal, isAdd, se
 	const [imagePath, setImagePath] = useState('')
 
 
-	const {getCategories, addProduct, editProduct} = useProductDetails('https://amazonia-backend.onrender.com')
+	const {getCategories, addProduct, editProduct} = useProductDetails(backendConnection)
 
 	const handleClose = () => setShowModal(false)
 

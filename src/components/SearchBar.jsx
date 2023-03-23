@@ -4,6 +4,7 @@ import { FormControl, Button, Container } from 'react-bootstrap'
 import { useState, useEffect, useRef } from 'react'
 import useProductDetails from '../hooks/useProductDetails'
 import { useNavigate } from 'react-router-dom/dist'
+import backendConnection from '../backendConstant'
 
 function SearchBar() {
   const [clickedItem, setClickedItem] = useState(false)
@@ -11,7 +12,7 @@ function SearchBar() {
   const [searchText, setSearchText] = useState('')
   const [showSearchResult, setShowSearchResult] = useState(false)
   const [searchResults, setSearchResults] = useState([])
-  const {getSearchProduct} = useProductDetails('https://amazonia-backend.onrender.com')
+  const {getSearchProduct} = useProductDetails(backendConnection)
   const nav = useNavigate()
   const componentRef = useRef()
 

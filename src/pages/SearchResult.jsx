@@ -4,12 +4,13 @@ import { useState } from 'react'
 import useProductDetails from '../hooks/useProductDetails'
 import { useParams } from 'react-router'
 import ProductCard from '../components/ProductCard'
+import backendConnection from '../backendConstant'
 
 function SearchResult() {
 
   const [searchProducts, setSearchProducts] = useState([])
   const {searchQuery} = useParams()
-  const {getSearchProduct} = useProductDetails('https://amazonia-backend.onrender.com')
+  const {getSearchProduct} = useProductDetails(backendConnection)
 
   useEffect(() => {
     getProductsSearched()

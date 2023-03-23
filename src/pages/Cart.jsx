@@ -7,11 +7,12 @@ import { useNavigate } from 'react-router'
 import Swal from 'sweetalert2'
 import EditProductModal from '../components/modals/EditProductModal'
 import {useUserContext} from '../context/UserContext'
+import backendConnection from '../backendConstant'
 
 function Cart() {
 	const [orderDetails, setOrderDetails] = useState({})
 	const [loading, setLoading] = useState(true)
-	const {getUserOrder, deleteProduct, payOutOrder} = useOrderDetails('https://amazonia-backend.onrender.com')
+	const {getUserOrder, deleteProduct, payOutOrder} = useOrderDetails(backendConnection)
 	const [valueRefresh , setValueRefresh] = useState(true)
 	const nav =  useNavigate()
 

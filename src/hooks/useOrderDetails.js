@@ -1,5 +1,6 @@
 
 import axios from "axios"
+import apiConstants from './apiConstants'
 
 
 const useOrderDetails = (apiUrl) => {
@@ -12,6 +13,9 @@ const useOrderDetails = (apiUrl) => {
 		console.log("GET USER ORDERS")
 		console.log(res)
 
+		if(res.data.code === apiConstants.codeERROR)
+			return apiConstants.codeERROR
+
 		return res.data.result
 	}
 
@@ -22,7 +26,7 @@ const useOrderDetails = (apiUrl) => {
 		console.log(token)
 		const res = await axios.post(`${apiUrl}/api/users/addToCart`, order,  {headers : {'Authorization' : token}})
 
-		console.log("ADDING TO CARTZZ")
+		console.log("ADDING TO CART")
 		console.log(res)
 	}
 
@@ -32,6 +36,9 @@ const useOrderDetails = (apiUrl) => {
 		
 		console.log("DELETING PRODUCT")
 		console.log(res)
+
+		if(res.data.code === apiConstants.codeERROR)
+			return apiConstants.codeERROR
 
 		return res.data.result
 
@@ -44,6 +51,9 @@ const useOrderDetails = (apiUrl) => {
 		console.log("EDITING PROD QUANTITY")
 		console.log(res)
 
+		if(res.data.code === apiConstants.codeERROR)
+			return apiConstants.codeERROR
+
 		return res.data.result
 	}
 
@@ -53,6 +63,9 @@ const useOrderDetails = (apiUrl) => {
 
 		console.log("GETTING PRODUCTS FROM ORDER")
 		console.log(res)
+
+		if(res.data.code === apiConstants.codeERROR)
+			return apiConstants.codeERROR
 
 		return res.data.result
 	}
@@ -67,6 +80,9 @@ const useOrderDetails = (apiUrl) => {
 
 		console.log('PAYING OUT OIRDER')
 		console.log(res)
+
+		if(res.data.code === apiConstants.codeERROR)
+			return apiConstants.codeERROR
 
 		return res.data.result
 	}

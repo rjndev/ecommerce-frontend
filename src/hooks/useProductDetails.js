@@ -1,4 +1,5 @@
 import axios from 'axios'
+import apiConstants from './apiConstants'
 
 
 const useProductDetails = (apiUrl) => {
@@ -6,11 +7,17 @@ const useProductDetails = (apiUrl) => {
 	const getRandomProducts = async (size) => {
 		const res = await axios.post(`${apiUrl}/api/products/details/random`, {size : size})
 
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
+
 		return res.data.result
 	}
 
 	const getSearchProduct = async(textSearch) => {
 		const res = await axios.get(`${apiUrl}/api/products/search/${textSearch}`)
+
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
 
 		return res.data.result;
 	}
@@ -21,6 +28,9 @@ const useProductDetails = (apiUrl) => {
 		console.log("PRODUCT DETAIL!")
 		console.log(res)
 
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
+
 		return res.data.result
 	}
 
@@ -29,6 +39,9 @@ const useProductDetails = (apiUrl) => {
 	
 		console.log('GETTING ALL CATEGORIES')
 		console.log(res)
+
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
 
 		return res.data.result
 	}
@@ -41,9 +54,10 @@ const useProductDetails = (apiUrl) => {
 		console.log("ADDING PRODUCT")
 		console.log(res)
 
-		
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
 
-		return res.data.result
+		return res.data.code
 		
 	}
 
@@ -54,6 +68,10 @@ const useProductDetails = (apiUrl) => {
 
 		console.log("EDITING PRODUCT")
 		console.log(res)
+
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
+
 		return res.data.result
 	}
 

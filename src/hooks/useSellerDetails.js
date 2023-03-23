@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import apiConstants from './apiConstants'
 
 const useSellerDetails = (apiUrl) => {
 
@@ -11,6 +11,10 @@ const useSellerDetails = (apiUrl) => {
 
 		console.log("SELLER DETAIL")
 		console.log(res)
+
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
+
 		return res.data.result
 	}
 
@@ -21,7 +25,10 @@ const useSellerDetails = (apiUrl) => {
 		console.log("SELLER PRODUCTS")
 		console.log(res)
 
-		return res.data.result.products
+		if(res.data.code !== apiConstants.codeOK)
+			return apiConstants.codeERROR
+
+		return res.data.result
 	}
 
 	return {

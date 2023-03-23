@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router'
 import useProductDetails from '../hooks/useProductDetails'
 import useOrderDetails from '../hooks/useOrderDetails'
 import Swal from 'sweetalert2'
+import backendConnection from '../backendConstant'
 
 function ProductInfo() {
 	const {id} = useParams()
 	const [productInfo, setProductInfo] = useState({})
 	const [loading, setLoading] = useState(true)
-	const {getProductDetails} = useProductDetails('https://amazonia-backend.onrender.com')
-	const {addToCart} = useOrderDetails('https://amazonia-backend.onrender.com')
+	const {getProductDetails} = useProductDetails(backendConnection)
+	const {addToCart} = useOrderDetails(backendConnection)
 	const [quantity, setQuantity] = useState(0)
 	const nav = useNavigate()
 
@@ -72,9 +73,9 @@ function ProductInfo() {
 				</Container>
 
 				:
-				
-				<Container fluid className='mt-5 d-flex px-5' >
-					<Container className='mt-5 ms-4'>
+	
+				<Container fluid className='mt-5 d-flex px-5 w-100 product-info-container' >
+					<Container className='lg-mt-5 lg-ms-4 product-info-img'>
 						<img src={productInfo.imagePath} className='p-3' width={450} height={450} alt="pic" />
 					</Container>
 
@@ -84,7 +85,7 @@ function ProductInfo() {
 						<p>{productInfo.description}</p>
 					</Container>
 
-					<Card className='mt-5 pt-3 me-5' style={{width: '50rem', marginTop : '100rem'}}>
+					<Card className='mt-5 pt-3 me-5 w-100' style={{width: '50rem', marginTop : '100rem'}}>
 						<Card.Body>
 							<Card.Title>${productInfo.price}</Card.Title>
 							<Card.Text className='mt-5'>Free shipping.</Card.Text>
@@ -105,7 +106,6 @@ function ProductInfo() {
 				</Container>
 			}
 		</>
-		
 	)
 }
 
