@@ -1,13 +1,13 @@
 import axios from 'axios'
 import apiConstants from './apiConstants'
 
-const useSellerDetails = (apiUrl) => {
+const useSellerDetails = () => {
 
 
 	const getSellerDetails = async ( token) => {
 		token = 'Bearer ' + token
 
-		const res = await axios.get(`${apiUrl}/api/seller/details`, {headers : {'Authorization' : token}})
+		const res = await axios.get(`${process.env.REACT_APP_PROD_URL}/api/seller/details`, {headers : {'Authorization' : token}})
 
 		console.log("SELLER DETAIL")
 		console.log(res)
@@ -20,7 +20,7 @@ const useSellerDetails = (apiUrl) => {
 
 	const getSellerProducts = async (token) => {
 		token = 'Bearer ' + token
-		const res = await axios(`${apiUrl}/api/seller/details`, {headers : {'Authorization' : token}})
+		const res = await axios(`${process.env.REACT_APP_PROD_URL}/api/seller/details`, {headers : {'Authorization' : token}})
 
 		console.log("SELLER PRODUCTS")
 		console.log(res)

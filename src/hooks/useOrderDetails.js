@@ -3,12 +3,12 @@ import axios from "axios"
 import apiConstants from './apiConstants'
 
 
-const useOrderDetails = (apiUrl) => {
+const useOrderDetails = () => {
 
 
 	const getUserOrder = async (token) => {
 		token = 'Bearer ' + token
-		const res = await axios.get(`${apiUrl}/api/users/myOrders`, {headers : {'Authorization' : token}})
+		const res = await axios.get(`${process.env.REACT_APP_PROD_URL}/api/users/myOrders`, {headers : {'Authorization' : token}})
 	
 		console.log("GET USER ORDERS")
 		console.log(res)
@@ -24,7 +24,7 @@ const useOrderDetails = (apiUrl) => {
 		
 		token = 'Bearer ' + token
 		console.log(token)
-		const res = await axios.post(`${apiUrl}/api/users/addToCart`, order,  {headers : {'Authorization' : token}})
+		const res = await axios.post(`${process.env.REACT_APP_PROD_URL}/api/users/addToCart`, order,  {headers : {'Authorization' : token}})
 
 		console.log("ADDING TO CART")
 		console.log(res)
@@ -32,7 +32,7 @@ const useOrderDetails = (apiUrl) => {
 
 	const deleteProduct = async(token,  index) => { 
 		token = 'Bearer ' + token 
-		const res = await axios.delete(`${apiUrl}/api/users/myOrders/deleteProduct`, {headers : {'Authorization' : token}, data : {index : index}})
+		const res = await axios.delete(`${process.env.REACT_APP_PROD_URL}/api/users/myOrders/deleteProduct`, {headers : {'Authorization' : token}, data : {index : index}})
 		
 		console.log("DELETING PRODUCT")
 		console.log(res)
@@ -46,7 +46,7 @@ const useOrderDetails = (apiUrl) => {
 
 	const editProductQuantity = async(token, index, quantity) => {
 		token = 'Bearer ' + token
-		const res = await axios.put(`${apiUrl}/api/users/myOrders/editProductQuantity`, {index : index, quantity : quantity},  {headers : {'Authorization' : token}})
+		const res = await axios.put(`${process.env.REACT_APP_PROD_URL}/api/users/myOrders/editProductQuantity`, {index : index, quantity : quantity},  {headers : {'Authorization' : token}})
 	
 		console.log("EDITING PROD QUANTITY")
 		console.log(res)
@@ -59,7 +59,7 @@ const useOrderDetails = (apiUrl) => {
 
 	const getProductsFromOrder = async(token) => {
 		token = 'Bearer ' + token
-		const res = await axios.get(`${apiUrl}/api/seller/productsFromOrder`, {headers : {'Authorization' : token}})
+		const res = await axios.get(`${process.env.REACT_APP_PROD_URL}/api/seller/productsFromOrder`, {headers : {'Authorization' : token}})
 
 		console.log("GETTING PRODUCTS FROM ORDER")
 		console.log(res)
@@ -75,7 +75,7 @@ const useOrderDetails = (apiUrl) => {
 		const data = {
 			orderId
 		}
-		const res = await axios.post(`${apiUrl}/api/users/payCart`, data, {headers : {'Authorization' : token}})
+		const res = await axios.post(`${process.env.REACT_APP_PROD_URL}/api/users/payCart`, data, {headers : {'Authorization' : token}})
 
 
 		console.log('PAYING OUT OIRDER')

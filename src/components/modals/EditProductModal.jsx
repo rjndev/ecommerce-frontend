@@ -3,7 +3,6 @@ import { Modal, Container, Button, Form } from 'react-bootstrap'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import useOrderDetails from '../../hooks/useOrderDetails'
-import backendConnection from '../../backendConstant'
 
 
 
@@ -12,7 +11,7 @@ function EditProductModal({showModal, setShowModal, productName, editQuantity, i
 	const [quantity, setQuantity] = useState(0)
 	const handleClose = () => setShowModal(false)
 	const handleShow = () => setShow(true)
-	const {editProductQuantity} = useOrderDetails(backendConnection)
+	const {editProductQuantity} = useOrderDetails()
 
 	const handleEdit = async () => {
 

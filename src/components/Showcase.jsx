@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import {Container} from 'react-bootstrap'
 import ProductCard from './ProductCard'
 import useProductDetails from '../hooks/useProductDetails'
-import backendConnection from '../backendConstant'
 
 function Showcase() {
-	const {getRandomProducts} = useProductDetails(backendConnection)
+	const {getRandomProducts} = useProductDetails()
 	const [randomProducts, setRandomProducts] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 

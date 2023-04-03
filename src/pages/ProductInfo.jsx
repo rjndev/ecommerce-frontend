@@ -6,14 +6,13 @@ import { useNavigate } from 'react-router'
 import useProductDetails from '../hooks/useProductDetails'
 import useOrderDetails from '../hooks/useOrderDetails'
 import Swal from 'sweetalert2'
-import backendConnection from '../backendConstant'
 
 function ProductInfo() {
 	const {id} = useParams()
 	const [productInfo, setProductInfo] = useState({})
 	const [loading, setLoading] = useState(true)
-	const {getProductDetails} = useProductDetails(backendConnection)
-	const {addToCart} = useOrderDetails(backendConnection)
+	const {getProductDetails} = useProductDetails()
+	const {addToCart} = useOrderDetails()
 	const [quantity, setQuantity] = useState(0)
 	const nav = useNavigate()
 

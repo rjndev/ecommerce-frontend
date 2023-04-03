@@ -7,7 +7,6 @@ import validator from 'validator'
 import Swal from 'sweetalert2'
 import useAuthenticate from '../hooks/useAuthenticate'
 import { useNavigate } from 'react-router'
-import backendConnection from '../backendConstant'
 
 function RegisterSeller() {
 
@@ -23,7 +22,7 @@ function RegisterSeller() {
 	const [validPass, setValidPass] = useState(false)
 	const [validConfirmPass, setValidConfirmPass] = useState(false)
 
-	const {registerSeller} = useAuthenticate(backendConnection)
+	const {registerSeller} = useAuthenticate()
 	const nav = useNavigate()
 
 	const validateForm = () => {

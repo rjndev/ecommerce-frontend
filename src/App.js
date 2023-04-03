@@ -19,7 +19,6 @@ import useUserDetails from './hooks/useUserDetails';
 import useSellerDetails from './hooks/useSellerDetails';
 import './App.css'
 import SearchResult from './pages/SearchResult';
-import backendConnection from './backendConstant';
 
 
 function App() {
@@ -28,8 +27,8 @@ function App() {
 	const [userLoggedIn, setUserLoggedIn] = useState(false)
 	const [isSeller, setIsSeller] = useState(false)
 	const [loaded, setIsLoaded] = useState(false)
-	const {getUserDetails} = useUserDetails(backendConnection)
-	const {getSellerDetails} = useSellerDetails(backendConnection)
+	const {getUserDetails} = useUserDetails()
+	const {getSellerDetails} = useSellerDetails()
 
 	const verifySeller = async () => {
 		const data = await getSellerDetails(localStorage.getItem('token'))

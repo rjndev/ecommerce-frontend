@@ -6,7 +6,6 @@ import validator from 'validator'
 import useAuthenticate from '../hooks/useAuthenticate'
 import Swal from 'sweetalert2'
 import {Link, useNavigate} from 'react-router-dom'
-import backendConnection from '../backendConstant'
 
 function Register() {
 
@@ -24,7 +23,7 @@ function Register() {
 	const [validConfirmPass, setValidConfirmPass] = useState(false)
 	const nav = useNavigate()
 	
-	const {register} = useAuthenticate(backendConnection)
+	const {register} = useAuthenticate()
 
 	const validateForm = () => {
 		if(password.length >= 8) {

@@ -5,10 +5,10 @@ import ShipmentCard from '../../components/ShipmentCard'
 import useOrderDetails from '../../hooks/useOrderDetails'
 import { useState, useEffect } from 'react'
 import ProductsFromOrderModal from '../../components/modals/ProductsFromOrderModal'
-import backendConnection from '../../backendConstant'
+
 
 function Shipments() {
-	const {getProductsFromOrder} = useOrderDetails(backendConnection)
+	const {getProductsFromOrder} = useOrderDetails()
 	const [allOrders, setAllOrders] = useState([])
 	const [showModal, setShowModal] = useState(false)
 	const [currOrder, setCurrOrder] = useState({})

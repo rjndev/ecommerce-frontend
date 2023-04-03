@@ -6,14 +6,13 @@ import Swal from 'sweetalert2'
 import useAuthenticate from '../hooks/useAuthenticate'
 import {useUserContext} from '../context/UserContext'
 import {useNavigate} from 'react-router-dom'
-import backendConnection from '../backendConstant'
 
 
 function Login() {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const {login, loginSeller} = useAuthenticate(backendConnection)
+	const {login, loginSeller} = useAuthenticate()
 	const {setUserLoggedIn, userLoggedIn, setIsSeller} = useUserContext()
 	const nav = useNavigate()
 

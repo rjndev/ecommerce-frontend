@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const useAuthenticate = (apiUrl)  => {
+const useAuthenticate = ()  => {
 
 
 	const login = async (userData) => {
@@ -11,7 +11,7 @@ const useAuthenticate = (apiUrl)  => {
 		}
 
 		console.log("LOGIN")
-		const res = await axios.post(`${apiUrl}/api/users/login`, data)
+		const res = await axios.post(`${process.env.REACT_APP_PROD_URL}/api/users/login`, data)
 
 		if(res.data.result == 'WC') {
 			return false
@@ -27,7 +27,7 @@ const useAuthenticate = (apiUrl)  => {
 			password : userData.password
 		}
 
-		const res = await axios.post(`${apiUrl}/api/seller/login`, data)
+		const res = await axios.post(`${process.env.REACT_APP_PROD_URL}/api/seller/login`, data)
 
 		if(res.data.result == 'WC') {
 			return false
@@ -46,7 +46,7 @@ const useAuthenticate = (apiUrl)  => {
 			password : userData.password
 		}
 		console.log("REGISTERING")
-		const res = await axios.post(`${apiUrl}/api/users/register`, data)
+		const res = await axios.post(`${process.env.REACT_APP_PROD_URL}/api/users/register`, data)
 		
 		console.log(res)
 
@@ -67,7 +67,7 @@ const useAuthenticate = (apiUrl)  => {
 		}
 
 		console.log("REGISTERING SELLER")
-		const res = await axios.post(`${apiUrl}/api/seller/create`, data)
+		const res = await axios.post(`${process.env.REACT_APP_PROD_URL}/api/seller/create`, data)
 
 		console.log(res)
 		if(res.data.result === "OK") {

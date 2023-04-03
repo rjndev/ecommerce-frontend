@@ -4,14 +4,13 @@ import useSellerDetails from '../../hooks/useSellerDetails'
 import SellerProductCard from '../../components/SellerProductCard'
 import { Container, Button } from 'react-bootstrap'
 import AddProductModal from '../../components/modals/AddProductModal'
-import backendConnection from '../../backendConstant'
 
 function SellerProducts() {
 	const [products, setProducts] = useState([])
 	const [currProductForEdit, setCurrProductForEdit] = useState({})
 	const [showModal, setShowModal] = useState(false)
 	const [isAdd, setIsAdd] = useState(true)
-	const {getSellerProducts} = useSellerDetails(backendConnection)
+	const {getSellerProducts} = useSellerDetails()
 
 
 
